@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <h1>Full Menu</h1>
+    <!-- we will use checkcategory to keep record of the last category we check later -->
+    <% let checkCategory = ''; %>
+    <!-- sorting our menu before we loop through it so that its easier to categorize the items into the appropriate categories -->
+    <% menu.sort((a, b) => a.category.localeCompare(b.category)); %>
+    <% menu.forEach((item) => { %>
+        <% if (item.category !== checkCategory) { %>
+           <h2> <%= item.category %></h2>
+           <% checkCategory = item.category %>
+        <%} %>
+        <li style="list-style-type: none;">
+            <h4>name: <%=item.name%></h4> 
+            <p>price: <%=item.price%></p>
+            <p>rating: <%=item.rating%></p>
+            <p><%=item.details%></p>
+        </li>
+        
+    <%}); %>
+</body>
+</html>
